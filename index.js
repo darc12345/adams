@@ -40,7 +40,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: { 
-    secure: false,       // Allow HTTP in dev
+    secure: true,       // Allow HTTP in dev
     sameSite: 'none',     // Use 'none' if using HTTPS
     domain: 'project-adams.vercel.app/', // 👈 Critical for cross-port cookies
     maxAge: 24 * 60 * 60 * 1000 // Optional: set expiry
