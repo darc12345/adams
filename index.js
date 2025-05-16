@@ -40,8 +40,8 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  store: new MemoryStore(), 
   proxy: true, 
+  store: new MemoryStore(), 
   cookie: { 
     secure: true,
     sameSite: 'none',
