@@ -41,7 +41,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   proxy: true, // 👈 Required for secure cookies behind proxy
-  store: new session.MemoryStore(), // Replace with Redis in production
+  // store: new session.MemoryStore(), // Replace with Redis in production
   cookie: { 
     secure: true,
     sameSite: 'none',
