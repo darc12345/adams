@@ -2,6 +2,7 @@ import express from "express";
 import 'dotenv/config'
 import {Controller} from "./src/endpoints/controller/controller.js";
 import session from 'express-session';
+import { MemoryStore } from 'express-session'; 
 import cors from 'cors';
 import bodyParser from "body-parser";
 import { neon } from "@neondatabase/serverless";
