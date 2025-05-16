@@ -11,7 +11,46 @@ const SignUpPage = () => {
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  const googleSignIn = async () => {
+    setIsLoading(true);
+    setErrorMsg('');
+    let token: string | undefined, user: import("firebase/auth").User, email: string | null | undefined, uid: string | undefined;
+    try {
+      const result: UserCredential = await signInWithPopup(auth, provider);
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      if (!credential) {
+        throw new Error('No credential found');
+      }
+      token = credential.accessToken;
+      user = result.user;
+      email = user.email;
+      uid = user.uid;
+    } catch (err) {
+      if (typeof err === "object" && err && "code" in err && (err as { code?: string }).code === "auth/cancelled-popup-request") {
+        setErrorMsg("Google Sign-In popup was cancelled. Please try again.");
+      } else {
+        setErrorMsg('Google Sign-In failed. Please try again.');
+      }
+      setIsLoading(false);
+      return;
+    }
 
+    try {
+      await fetch('https://adam-be1-c555c3bbd0a6.herokuapp.com/google-signin', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        credentials: 'include',
+        body: JSON.stringify({ token, email, uid }),
+      });
+      router.push('/dashboard');
+    } catch {
+      setErrorMsg('Google Sign-In failed. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -150,7 +189,7 @@ const SignUpPage = () => {
         </button>
       </form>
       
-      <div className="mt-6 text-center">
+      <div className="mt-6 text-center" onClick={googleSignIn}>
         <div className="mb-2 text-white font-medium">Login with</div>
         <Image 
           src="/google.svg" 
