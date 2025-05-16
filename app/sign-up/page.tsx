@@ -13,7 +13,7 @@ const SignUpPage = () => {
   const router = useRouter();
   const googleSignIn = async () => {
     setIsLoading(true);
-    setErrorMsg('');
+    setError('');
     let token: string | undefined, user: import("firebase/auth").User, email: string | null | undefined, uid: string | undefined;
     try {
       const result: UserCredential = await signInWithPopup(auth, provider);
@@ -27,9 +27,9 @@ const SignUpPage = () => {
       uid = user.uid;
     } catch (err) {
       if (typeof err === "object" && err && "code" in err && (err as { code?: string }).code === "auth/cancelled-popup-request") {
-        setErrorMsg("Google Sign-In popup was cancelled. Please try again.");
+        setError("Google Sign-In popup was cancelled. Please try again.");
       } else {
-        setErrorMsg('Google Sign-In failed. Please try again.');
+        setError('Google Sign-In failed. Please try again.');
       }
       setIsLoading(false);
       return;
@@ -46,7 +46,7 @@ const SignUpPage = () => {
       });
       router.push('/dashboard');
     } catch {
-      setErrorMsg('Google Sign-In failed. Please try again.');
+      setError('Google Sign-In failed. Please try again.');
     } finally {
       setIsLoading(false);
     }
