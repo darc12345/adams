@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Project ADAMS: Adaptive Air Monitoring System 🌍🛵
 
-## Getting Started
+**ADAMS** is an innovative solution designed to passively monitor air quality in real-time for motorcycle drivers through a compact wearable device worn like a wristwatch. Developed for the **Google Solution Challenge 2025**, ADAMS aims to help drivers stay informed and motivated toward healthier driving habits through technology they already use.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ✨ Key Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 🌬️ **Interactive Dashboard**
+- **Points Collected**: Display points the driver collected today and the total amount they have through gamified form.
+- **Daily Reports**: Summarizes work duration, routes, and air quality trends with AI-generated feedback.
+- **Weekly Reports**: Aggregates data to show long-term trends and improvements.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🗺️ **Global Heatmap**
+- Visualizes regional air quality using interpolated data from drivers' sensors.
+- Color-coded zones (green/yellow/red) to highlight pollution levels.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 🔔 **Notification System**
+- Alerts drivers when they spend too much time in high-pollution (red) zones.
 
-## Learn More
+### 🔥 **Streaks, Points & Rewards System**
+- **Streak System**: Earn points for driving in less dense zones (green > yellow > red).
+- **Mission System**: Drivers can earn points by completing missions.
+- **Redeemable Points**: Exchange points for practical goods like face masks, fuel coupons, or bottled water.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🏗️ Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### **Information Architecture**
+- **Landing Page**: Where first time-users arrive.
+- **User Accounts**: Login, permissions, and data synchronization.
+- **Dashboard**: Daily reports, air quality charts, and the user's route for the day.
+- **Global Heatmap**: Visualizes aggregated user data and highlights high-density areas.
+- **Points**: Completing missions, funding exchange, and claiming rewards.
 
-## Deploy on Vercel
+### **Prototype**
+- **High-Fidelity Design**: [View on Figma](https://www.figma.com/design/ZgTS5BJalQoFUwfJRTLd9C/ADAMS-project?node-id=1-7&t=YcfnNV9nMTwolqay-1)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 How to Access the App
+
+Project ADAMS is live!  
+Access the deployed application here:  
+🔗 [adams-aouc.vercel.app/landing](https://adams-aouc.vercel.app/landing)
+
+_Deployed using Vercel and Heroku._
+
+---
+
+## 🧑‍💻 Collaborators
+ADAMS is developed by a passionate team consisting of:
+- **Adam Maulana Haq** (Hustler)
+- **Resh-'Aina Utomo** (Hipster)
+- **Rama Andhika Pratama** (Hacker - FE)
+- **Darryl Chandra** (Hacker - BE)
+Under **Google Developer Groups on Campus UGM**, committed to creating a sustainable future.
+
+---
+
+🌱 *Driving Towards a Better Future* 🌱

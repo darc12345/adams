@@ -12,7 +12,7 @@ export default function DailyReport() {
   const [dailyMessage, setDailyMessage] = useState('Loading your daily message...');
 
 useEffect(() => {
-    fetch('http://localhost:3001/gemini-explanation', {
+    fetch('https://adam-be1-c555c3bbd0a6.herokuapp.com/gemini-explanation', {
       credentials: 'include',
     })
       .then(res => res.ok ? res.text() : Promise.reject('Failed to fetch'))
