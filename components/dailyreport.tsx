@@ -15,8 +15,8 @@ useEffect(() => {
     fetch('https://adam-be1-c555c3bbd0a6.herokuapp.com/gemini-explanation', {
       credentials: 'include',
     })
-      .then(res => res.ok ? res.text() : Promise.reject('Failed to fetch'))
-      .then(text => setDailyMessage(text))
+      .then(res => res.ok ? res.json() : Promise.reject('Failed to fetch'))
+      .then(text => setDailyMessage(text['message']))
       .catch(() => setDailyMessage('Could not load your daily message.'));
   }, []);
 

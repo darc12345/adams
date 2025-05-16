@@ -17,7 +17,7 @@ export default function DailyReportPage() {
       credentials: 'include',
     })
     .then(res => res.ok ? res.json() : Promise.reject('Failed to fetch'))
-    .then(data => setDailyMessage(data['message']['message']))
+    .then(data => setDailyMessage(data['message']))
       .catch(() => setDailyMessage('Could not load your daily message.'));
   }, []);
 
