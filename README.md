@@ -7,7 +7,7 @@
 ## ✨ Key Features
 
 ### 🌬️ **Interactive Dashboard**
-- **Points Collected**: Display the points the driver has collected today and the total amount they have through a gamified form.
+- **Points Collected**: Display points the driver collected today and the total amount they have through gamified form.
 - **Daily Reports**: Summarizes work duration, routes, and air quality trends with AI-generated feedback.
 - **Weekly Reports**: Aggregates data to show long-term trends and improvements.
 
@@ -36,6 +36,41 @@
 
 ### **Prototype**
 - **High-Fidelity Design**: [View on Figma](https://www.figma.com/design/ZgTS5BJalQoFUwfJRTLd9C/ADAMS-project?node-id=1-7&t=YcfnNV9nMTwolqay-1)
+
+- **Previous Repository**: We reached the deployment limit on our previous repository, so we cloned it into a new one. You can find the previous repository here: https://github.com/kiyuzo/adams/
+
+---
+
+## 📦 Product Screenshots
+
+Here are some visuals of ADAMS in action:
+
+- **Wristwatch Design**  
+  ![Wristwatch Design](public/readme/wristwatch.png)
+
+- **Landing Page**  
+  ![Landing Page](public/readme/landing.png)
+
+- **Dashboard**  
+  ![Dashboard](public/readme/dashboard.png)
+
+- **Daily Report**  
+  ![Daily Report](public/readme/daily-report.png)
+
+- **Heatmap**  
+  ![Heatmap](public/readme/heatmap.png)
+
+- **Points - Mission**  
+  ![Points - Mission](public/readme/points-mission.png)
+
+- **Points - Rewards**  
+  ![Points - Rewards](public/readme/points-rewards.png)
+
+---
+
+## 🗂️ Product Architecture
+
+![Product Architecture Diagram](public/readme/product-architecture.png)
 
 ---
 
