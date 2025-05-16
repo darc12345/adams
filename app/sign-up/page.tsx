@@ -3,26 +3,6 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { getAuth, signInWithPopup, GoogleAuthProvider, UserCredential } from "firebase/auth";
-import { initializeApp, getApps, FirebaseApp } from "firebase/app";
-const firebaseConfig = {
-  apiKey: "AIzaSyBJm2mG6WU2ItwKf2lQDP286QojYnPh50Q",
-  authDomain: "adams-db415.firebaseapp.com",
-  projectId: "adams-db415",
-  storageBucket: "adams-db415.firebasestorage.app",
-  messagingSenderId: "117026430120",
-  appId: "1:117026430120:web:875a4e9078683e37d0769d",
-  measurementId: "G-1ZGBXZ1DEK"
-};
-
-// Initialize Firebase only once
-let app: FirebaseApp;
-if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
-} else {
-  app = getApps()[0];
-}
-
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
@@ -33,47 +13,6 @@ const SignUpPage = () => {
   const provider = new GoogleAuthProvider();
   const auth = getAuth(app);
   const router = useRouter();
-
-  const googleSignIn = async () => {
-    setIsLoading(true);
-    setError('');
-    let token: string | undefined, user: import("firebase/auth").User, email: string | null | undefined, uid: string | undefined;
-    try {
-      const result: UserCredential = await signInWithPopup(auth, provider);
-      const credential = GoogleAuthProvider.credentialFromResult(result);
-      if (!credential) {
-        throw new Error('No credential found');
-      }
-      token = credential.accessToken;
-      user = result.user;
-      email = user.email;
-      uid = user.uid;
-    } catch (err) {
-      if (typeof err === "object" && err && "code" in err && (err as { code?: string }).code === "auth/cancelled-popup-request") {
-        setError("Google Sign-In popup was cancelled. Please try again.");
-      } else {
-        setError('Google Sign-In failed. Please try again.');
-      }
-      setIsLoading(false);
-      return;
-    }
-
-    try {
-      await fetch('https://adam-be1-c555c3bbd0a6.herokuapp.com/google-signin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify({ token, email, uid }),
-      });
-      router.push('/dashboard');
-    } catch {
-      setError('Google Sign-In failed. Please try again.');
-    } finally {
-      setIsLoading(false);
-    }
-  };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
@@ -211,17 +150,6 @@ const SignUpPage = () => {
           {isLoading ? 'Creating account...' : 'Create account'}
         </button>
       </form>
-      
-      <div className="mt-6 text-center" onClick={googleSignIn}>
-        <div className="mb-2 text-white font-medium">Login with</div>
-        <Image 
-          src="/google.svg" 
-          alt="Google Logo" 
-          width={40} 
-          height={40} 
-          className="mx-auto cursor-pointer"
-        />
-      </div>
     </div>
   );
 };
