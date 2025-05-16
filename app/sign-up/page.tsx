@@ -22,7 +22,6 @@ if (!getApps().length) {
 } else {
   app = getApps()[0];
 }
-const auth = getAuth(app);
 
 
 const SignUpPage = () => {
@@ -31,7 +30,8 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
+  const provider = new GoogleAuthProvider();
+  const auth = getAuth(app);
   const googleSignIn = async () => {
     setIsLoading(true);
     setError('');
