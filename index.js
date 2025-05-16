@@ -40,7 +40,8 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  proxy: true, // 👈 Required for secure cookies behind proxy
+  store: new MemoryStore(), 
+  proxy: true, 
   cookie: { 
     secure: true,
     sameSite: 'none',
