@@ -10,8 +10,6 @@ const SignUpPage = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const provider = new GoogleAuthProvider();
-  const auth = getAuth(app);
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
