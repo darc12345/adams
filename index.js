@@ -27,6 +27,7 @@ pingDatabase().then((isConnected) => {
 });
 let app = express();
 let controller = new Controller(db);
+app.set('trust proxy', 1); 
 app.use(
   cors({
     origin: 'https://adams-aouc.vercel.app',
@@ -39,6 +40,7 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
+  proxy: true, // Enable proxy support
   cookie: { 
     secure: true,       // Allow HTTP in dev
     sameSite: 'none',     // Use 'none' if using HTTPS
