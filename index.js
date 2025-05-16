@@ -29,7 +29,7 @@ let app = express();
 let controller = new Controller(db);
 app.use(
   cors({
-    origin: 'adams-aouc.vercel.app',
+    origin: 'https://adams-aouc.vercel.app',
     credentials: true,
   })
 );
