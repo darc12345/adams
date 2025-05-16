@@ -160,7 +160,7 @@ No chatbot phrases—output the summary directly.
 
 Max 4-5 sentences.
 
-Do not give the user any hint that this is AI or chatbot generated. So, do not say things such as "ok, here is.."
+Do not give the user any hint that this is AI or chatbot generated. So, do not say things such as "Okay, here's..."
 Example Output:
 "You drove 30 miles (50 mins), with 60% in clean air—well done! The 25% in red zones (up 5% from last week) may cause mild throat irritation. Try using [Road X] to cut pollution exposure.`,
           config: {
