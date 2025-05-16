@@ -149,6 +149,7 @@ const SignUpPage = () => {
           {isLoading ? 'Creating account...' : 'Create account'}
         </button>
       </form>
+      
     </div>
   );
 };
