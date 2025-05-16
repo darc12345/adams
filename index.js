@@ -38,7 +38,7 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing form data
 app.use(bodyParser.json());
 app.use(session({
-  secret: 'keyboard cat',
+  secret: process.env.COOKIE_PASSWORD,
   resave: false,
   saveUninitialized: false,
   proxy: true, 
