@@ -40,12 +40,12 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
-  proxy: true, // Enable proxy support
+  proxy: true, // 👈 Required for secure cookies behind proxy
+  store: new session.MemoryStore(), // Replace with Redis in production
   cookie: { 
-    secure: true,       // Allow HTTP in dev
-    sameSite: 'none',     // Use 'none' if using HTTPS
-    // domain: 'adam-be1-c555c3bbd0a6.herokuapp.com', // 👈 Critical for cross-port cookies
-    maxAge: 24 * 60 * 60 * 1000 // Optional: set expiry
+    secure: true,
+    sameSite: 'none',
+    maxAge: 24 * 60 * 60 * 1000
   }
 }));
 
