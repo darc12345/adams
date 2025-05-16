@@ -33,22 +33,17 @@ export class Controller {
             try {
                 const { email, password } = req.body;
                 user_id = yield this.service.postLogin(email, password);
+                if (!user_id) {
+                    return res.status(401).json({ message: 'Invalid email or password' });
+                }
+                req.session.user_id = user_id;
+                yield req.session.save();
             }
             catch (error) {
                 console.error(error);
                 return res.status(500).json({ error: error.message });
             }
             ;
-            if (user_id != null) {
-                req.session.user_id = user_id;
-                yield new Promise((resolve, reject) => {
-                    req.session.save((err) => {
-                        if (err)
-                            reject(err);
-                        resolve();
-                    });
-                });
-            }
             return res.status(200).json({ message: 'logged in' });
         });
         this.getScannerData = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -248,25 +243,14 @@ Example Output:
             }
             if (uid != null) {
                 req.session.user_id = uid;
-                yield new Promise((resolve, reject) => {
-                    req.session.save((err) => {
-                        if (err)
-                            reject(err);
-                        resolve();
-                    });
-                });
+                yield req.session.save();
             }
             res.status(201).json({ message: 'User signed in successfully' });
         });
         this.postLogout = (req, res) => __awaiter(this, void 0, void 0, function* () {
             req.session.user_id = null;
-            yield new Promise((resolve, reject) => {
-                req.session.save((err) => {
-                    if (err)
-                        reject(err);
-                    resolve();
-                });
-            });
+            yield req.session.save();
+            res.status(200).json({ message: 'User logged out successfully' });
         });
         this.postRecordJourney = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {

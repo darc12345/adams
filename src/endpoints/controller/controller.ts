@@ -35,18 +35,15 @@ export class Controller {
     try {
       const { email, password } = req.body;
       user_id = await this.service.postLogin(email, password);
+      if (!user_id) {
+        return res.status(401).json({ message: 'Invalid email or password' });
+      }
+      req.session.user_id = user_id;
+      await req.session.save();
     } catch (error:any) {
       console.error(error);
       return res.status(500).json({ error: error.message });
     };
-    if (user_id != null) {
-      req.session.user_id = user_id;
-      await new Promise<void>((resolve, reject) => {
-        req.session.save((err:any) => {
-          if (err) reject(err);
-          resolve();
-        });
-      });    }
     return res.status(200).json({message:'logged in'})
   };
 
@@ -245,22 +242,15 @@ Example Output:
     }
     if (uid != null) {
       req.session.user_id = uid;
-      await new Promise<void>((resolve, reject) => {
-        req.session.save((err:any) => {
-          if (err) reject(err);
-          resolve();
-        });
-      });    }
+      await req.session.save();
+    }
     res.status(201).json({ message: 'User signed in successfully' });
   }
   postLogout = async (req: Request, res: Response) => {
     req.session.user_id = null;
-    await new Promise<void>((resolve, reject) => {
-      req.session.save((err:any) => {
-        if (err) reject(err);
-        resolve();
-      });
-    });  }
+    await req.session.save();
+    res.status(200).json({ message: 'User logged out successfully' });
+  }
   postRecordJourney = async (req: Request, res: Response) => {
     try {
       if(!req.session.user_id){
