@@ -5,6 +5,25 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { getAuth, signInWithPopup, GoogleAuthProvider, UserCredential } from "firebase/auth";
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
+const firebaseConfig = {
+  apiKey: "AIzaSyBJm2mG6WU2ItwKf2lQDP286QojYnPh50Q",
+  authDomain: "adams-db415.firebaseapp.com",
+  projectId: "adams-db415",
+  storageBucket: "adams-db415.firebasestorage.app",
+  messagingSenderId: "117026430120",
+  appId: "1:117026430120:web:875a4e9078683e37d0769d",
+  measurementId: "G-1ZGBXZ1DEK"
+};
+
+// Initialize Firebase only once
+let app: FirebaseApp;
+if (!getApps().length) {
+  app = initializeApp(firebaseConfig);
+} else {
+  app = getApps()[0];
+}
+const auth = getAuth(app);
+
 
 const SignUpPage = () => {
   const [email, setEmail] = useState('');
