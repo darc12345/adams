@@ -21,11 +21,11 @@ export class Controller {
             try {
                 const { email, password } = req.body;
                 yield this.service.postRegister(email, password);
-                res.status(201).json({ message: 'User registered successfully' });
+                return res.status(201).json({ message: 'User registered successfully' });
             }
             catch (error) {
                 console.error(error);
-                res.status(500).json({ error: error.message });
+                return res.status(500).json({ error: error.message });
             }
         });
         this.postLogin = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -36,14 +36,20 @@ export class Controller {
             }
             catch (error) {
                 console.error(error);
-                res.status(500).json({ error: error.message });
+                return res.status(500).json({ error: error.message });
             }
             ;
             if (user_id != null) {
                 req.session.user_id = user_id;
-                req.session.save();
+                yield new Promise((resolve, reject) => {
+                    req.session.save((err) => {
+                        if (err)
+                            reject(err);
+                        resolve();
+                    });
+                });
             }
-            res.status(200).json({ message: 'logged in' });
+            return res.status(200).json({ message: 'logged in' });
         });
         this.getScannerData = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
@@ -52,30 +58,29 @@ export class Controller {
             }
             catch (error) {
                 console.error(error);
-                res.status(500).json({ error: 'Failed to fetch scanner data' });
+                return res.status(500).json({ error: 'Failed to fetch scanner data' });
             }
         });
         this.postScannerData = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const { pollution, x_coor, y_coor } = req.body;
                 yield this.service.postScannerData(pollution, x_coor, y_coor);
-                res.status(201).json({ message: 'Scanner data posted successfully' });
+                return res.status(201).json({ message: 'Scanner data posted successfully' });
             }
             catch (error) {
                 console.error(error);
-                res.status(500).json({ error: error.message });
+                return res.status(500).json({ error: error.message });
             }
         });
         this.postPollutionExposure = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const { x_coor, y_coor, pollution } = req.body;
                 if (!req.session.user_id) {
-                    res.status(400).json({ message: 'unauthenticated' });
-                    return;
+                    return res.status(400).json({ message: 'unauthenticated' });
                 }
                 const user_id = req.session.user_id;
                 yield this.service.postPollutionExposure(user_id, x_coor, y_coor, pollution);
-                res.status(201).json({ message: 'Pollution exposure data recorded' });
+                return res.status(201).json({ message: 'Pollution exposure data recorded' });
             }
             catch (error) {
                 console.error(error);
@@ -90,11 +95,11 @@ export class Controller {
             }
             try {
                 const data = yield this.service.getExposureDataById(user_id);
-                res.status(200).json(data);
+                return res.status(200).json(data);
             }
             catch (error) {
                 console.error(error);
-                res.status(500).json({ error: error.message });
+                return res.status(500).json({ error: error.message });
             }
         });
         this.calculateMap = (req, res) => __awaiter(this, void 0, void 0, function* () {
@@ -243,13 +248,25 @@ Example Output:
             }
             if (uid != null) {
                 req.session.user_id = uid;
-                req.session.save();
+                yield new Promise((resolve, reject) => {
+                    req.session.save((err) => {
+                        if (err)
+                            reject(err);
+                        resolve();
+                    });
+                });
             }
             res.status(201).json({ message: 'User signed in successfully' });
         });
         this.postLogout = (req, res) => __awaiter(this, void 0, void 0, function* () {
             req.session.user_id = null;
-            req.session.save();
+            yield new Promise((resolve, reject) => {
+                req.session.save((err) => {
+                    if (err)
+                        reject(err);
+                    resolve();
+                });
+            });
         });
         this.postRecordJourney = (req, res) => __awaiter(this, void 0, void 0, function* () {
             try {
