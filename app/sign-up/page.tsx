@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { getAuth, signInWithPopup, GoogleAuthProvider, UserCredential } from "firebase/auth";
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
