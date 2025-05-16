@@ -7,7 +7,7 @@
 ## ✨ Key Features
 
 ### 🌬️ **Interactive Dashboard**
-- **Points Collected**: Display points the driver collected today and the total amount they have through gamified form.
+- **Points Collected**: Display the points the driver has collected today and the total amount they have through a gamified form.
 - **Daily Reports**: Summarizes work duration, routes, and air quality trends with AI-generated feedback.
 - **Weekly Reports**: Aggregates data to show long-term trends and improvements.
 
